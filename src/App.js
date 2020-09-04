@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Counter from './Counter';
-// import Say from './Say'
+import Say from './Hooks/Say'
 // import logo from './logo.svg';
 import './App.css';
 class App extends Component {
@@ -15,8 +15,8 @@ class App extends Component {
 
 				
 				<Counter/>
-				{React.version}
 				
+				<Say/>
             </div>
         );
     }
