@@ -1,0 +1,15 @@
+.success {
+    background-color: lightgreen;
+	flex-basis: auto;
+}
+
+.failure {
+    background-color: lightcoral;
+	flex-basis: auto;
+}
+
+.container {
+    /* display: flex; */
+    
+	flex-direction: column;
+}

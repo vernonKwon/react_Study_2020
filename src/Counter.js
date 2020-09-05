@@ -14,7 +14,7 @@ class Counter extends Component {
 
         return (
             <div>
-                {number % 2 === 0 ? <h1>{number}</h1> : <h2>{number}</h2>}
+                {number % 2 === 0 ? <h2>{number}</h2> : <h2>{number}</h2>}
 
                 <button
                     onClick={() => {
