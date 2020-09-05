@@ -3,9 +3,9 @@
 
 
 ### 목차
-[1. Hooks 사용 방법][id]
-[id]: URL "Hooks 사용 방법"
+1. Hooks 사용 방법
 
+ 
 ---
 #### (1) Hooks 사용 방법
 
