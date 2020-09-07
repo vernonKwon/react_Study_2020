@@ -1,29 +1,22 @@
 import React, { Component } from 'react';
-//import Counter from './Counter';
+//import Counter from './Hooks/Counter';
 //import Say from './Hooks/Say';
 //import EventPractice from './Event/EventPractice';
 //import ValidityState from './Dom_name/ValidationSample';
 //import IterationSample from './Repeat_component/IterationSample';
-import LifeCycleSample from './LifeCycle/LifeCycleSample';
-import ErrorBoundary from './LifeCycle/ErrorBoundary'
+//import LifeCycleSample from './LifeCycle/LifeCycleSample';
+//import ErrorBoundary from './LifeCycle/ErrorBoundary'
+//import CounterTwo from './Hooks/CounterTwo'
+//import Info from './Hooks/info'
+//import Info from './Hooks/useEffect'
 
 // import ScrollBox from './Dom_name/ScrollBox'
 // import logo from './logo.svg';
 import './App.css';
 
-function getRandomColor() {
-    return '#' + Math.floor(Math.random() * 1677215).toString(16);
-}
-class App extends Component {
-    state = {
-        color: '#000000',
-    };
 
-    handleClick = () => {
-        this.setState({
-            color: getRandomColor(),
-        });
-    };
+class App extends Component {
+        
     render() {
         return (
             <div className="App">
@@ -32,14 +25,9 @@ class App extends Component {
                     className="App-logo"
                     alt="logo"
                 />
-                <button onClick={this.handleClick}>랜덤 색상</button>
-				
-				<ErrorBoundary>
-				<LifeCycleSample  color = {this.state.color}/>
-				</ErrorBoundary>
                 
 				
-				{React.version}
+				
 				
             </div>
 
@@ -48,7 +36,16 @@ class App extends Component {
                 <EventPractice />
                 --------------------------
                 <ValidityState />
-                <IterationSample />*/
+                <IterationSample />
+				
+				<ErrorBoundary>
+				<LifeCycleSample  color = {this.state.color}/>
+				</ErrorBoundary>
+                
+				
+				<CounterTwo/>
+				<Info/>
+				*/
 
             /*<ScrollBox ref = {(ref) => {this.ScrollBox = ref}}/> -->
 				<button onclick = {()=>{this.scrollBox.ScrollToBottom()}}>맨 밑으로</button> */
