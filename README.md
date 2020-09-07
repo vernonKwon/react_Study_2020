@@ -1,5 +1,5 @@
 # 이 브랜치는 React JS 공부를 위한 브랜치다.
-
+공부하고 있는 교과서는 길벗 출판사의 '리액트를 다루는 기술'이다. 그렇기때문에 책의 코드와 굉장히 흡사할 것이다.
 
 
 ### 목차
@@ -55,6 +55,38 @@ useState의 인자에는 초기값을 넣어주면 된다. 값의 형태는 자�
 	nextArray.map(item => (item.id === 1 ? {...item, value : false} : item)) // id가 1인 항목의 value 를 false로 설정
 	
 객체의 사본을 만들때는 spread 연산자라고 불리는 ...을 사용하고 처리하고, 배열에 대한 사본을 만들 때는 배열의 내장 함수를 활용한다. 이에 대한 자세한 내용은 나중에 따로 다뤄보자
+
+여러개의 상태를 관리해야 할때는 그냥 useState를 여러개 쓰면 된다.
+
+	const Info = () => {
+		const [name, setName] = useState('');
+		const [nickName, setNickName] = useState('');
+
+		const onChangeName = (e) => {
+			setName(e.target.value);
+		};
+
+		const onChangeNickName = (e) => {
+			setNickName(e.target.value);
+		};
+
+		return (
+			<div>
+				<input onChange={onChangeName}></input>
+				<input onChange={onChangeNickName}></input>
+
+				<div>
+					<b> 이름 : </b>
+					{name}
+				</div>
+
+				<div>
+					<b> 닉네임 : </b>
+					{nickName}
+				</div>
+			</div>
+		);
+	};
 	
 ---
 
