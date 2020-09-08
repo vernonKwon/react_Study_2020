@@ -9,6 +9,8 @@ import React, { Component } from 'react';
 //import CounterTwo from './Hooks/CounterTwo'
 //import Info from './Hooks/info'
 //import Info from './Hooks/useEffect'
+// import Counter from './Hooks/useReducer/Counter'
+import Info from './Hooks/useReducer/Info'
 
 // import ScrollBox from './Dom_name/ScrollBox'
 // import logo from './logo.svg';
@@ -27,7 +29,7 @@ class App extends Component {
                 />
                 
 				
-				
+				<Info/>				
 				
             </div>
 
