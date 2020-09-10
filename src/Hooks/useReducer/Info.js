@@ -10,7 +10,7 @@ function reducer(state, action) {
 const Info = () => {
     const [state, disPatch] = useReducer(reducer, { name: '', nickname: '' });
 
-    const { name, nickname } = state;
+    const { name, nickname } = state; // 비구조화 할당
 
     const onChange = (e) => {
         disPatch(e.target);
@@ -31,7 +31,6 @@ const Info = () => {
                 <b>닉네임 : </b>
                 {nickname}
             </div>
-
         </div>
     );
 };

@@ -97,7 +97,7 @@ props, state 변경, 부모 컴포넌트 리렌더링 -> getDerivedStateFromProp
 		return null
 	}
 	
-여기서 props 와 state 의 차이를 짚고 가자면...
+여기서 props 와 state 의 차이를 짚고 가자면
 
 props 는 부모 컴포넌트가 자식 컴포넌트에게 주는 값이다. 자식 컴포넌트에서는 props 를 받아오기만하고, 받아온 props 를 직접 수정 할 수 없다. 반면에 state 는 컴포넌트 내부에서 선언하며 내부에서 값을 변경 할 수 있다.
 
@@ -202,7 +202,9 @@ useState의 인자에는 초기값을 넣어주면 된다. 값의 형태는 자�
 	nextArray.filter(item => item.id !== 2); // id가 2인 항목 제거
 	nextArray.map(item => (item.id === 1 ? {...item, value : false} : item)) // id가 1인 항목의 value 를 false로 설정
 	
-객체의 사본을 만들때는 spread 연산자라고 불리는 ...을 사용하고 처리하고, 배열에 대한 사본을 만들 때는 배열의 내장 함수를 활용한다. 이에 대한 자세한 내용은 나중에 따로 다뤄보자
+객체의 사본을 만들때는 spread(전개) 연산자라고 불리는 ...을 사용하고 처리하고, 배열에 대한 사본을 만들 때는 배열의 내장 함수를 활용한다. 이에 대한 자세한 내용은 나중에 따로 다뤄보자
+
+참고 링크 : https://velopert.com/3629
 
 여러개의 상태를 관리해야 할때는 그냥 useState를 여러개 쓰면 된다.
 
@@ -256,7 +258,21 @@ useReducer은 useSate보다 더 다양한 컴포넌트 상황에 따라 다양�
 	
 17장에서 다룰 리덕스에서 사용하는 액션 객체에는 어떤 액션인지 알려주는 type 필드가 꼭 있어야 하지만, useReducer에서 사용하는 액션 객체는 반드시 type을 지니고 있을 필요가 없다. 심지어 객체가 아니라 문자열이나 숫자여도 상관 없다.
 
+	const [state, dispatch] = useReducer(reducer, {value : 0})
+	
+	function reducer(state, action){
+		switch(action.type){
+			case 'INCREMENT': return { value: state.value + 1 };
+        	case 'DECREMENT': return { value: state.value - 1 };
+        	default: return state;
+		}
+	}
+	
+useReducer의 첫번째 파라미터에는 **리듀서 함수를 넣고**, 두번째 파라미터에는 **해당 리듀서의 기본값을 넣어준다.**
 
+이 Hook을 사용하면 state값과 dispatch 함수를 받아오는데 여기서 state는 현재 가르키고 있는 상태고, dispatch는 액션을 발생시키는 함수다. dispatch(action)과 같은 형태로, 함수 안에 파라미터로 액션 값을 넣어주면 리듀서 함수가 호출되는 구조다.
+
+useReducer를 사용했을 때의 가장 큰 장점은 컴포넌트 업데이트 로직을 컴포넌트 바깥으로 빼낼 수 있다는 것이다.
 
 ---
 

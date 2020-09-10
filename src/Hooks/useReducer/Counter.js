@@ -11,18 +11,19 @@ function reducer(state, action) {
     }
 }
 
-
 const Counter = () => {
-	const [state, disPatch] = useReducer(reducer, {value : 0})
-	
-	return (
-		<div>
-			<p>현재 카운터 값은 <b>{state.value}</b>입니다.</p>
-			
-			<button onClick = {()=>disPatch({type : 'INCREMENT'})}>+1</button>
-			<button onClick = {()=>disPatch({type : 'DECREMENT'})}>+1</button>
-		</div>
-	)
-}
+    const [state, disPatch] = useReducer(reducer, { value: 0 });
+
+    return (
+        <div>
+            <p>
+                현재 카운터 값은 <b>{state.value}</b>입니다.
+            </p>
+
+            <button onClick={() => disPatch({ type: 'INCREMENT' })}>+1</button>
+            <button onClick={() => disPatch({ type: 'DECREMENT' })}>+1</button>
+        </div>
+    );
+};
 
 export default Counter;
