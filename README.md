@@ -155,6 +155,9 @@ componentDidCatch 메소드는 리액트 v16에서 새롭게 도입됐다.
 ---
 ### Hooks 사용 방법
 
+Hooks은 리액트 v16.8에 새로 도입된 기능으로 함수형 컴포넌트에서도 상태 관리를 할 수 있는 useState, 렌더링 직후 작업을 설정하는 useEffect등의 기능을 제공하여 기존의 함수형 컴포넌트에서 할 수 없었던 다양한 작업을 할 수 있게 해준다.
+*React Native는 v0.59부터 Hook을 지원한다.*
+
 #### setState
 
 	import React, { useState } from 'react';
