@@ -10,15 +10,15 @@ import React, { Component } from 'react';
 //import Info from './Hooks/info'
 //import Info from './Hooks/useEffect'
 // import Counter from './Hooks/useReducer/Counter'
-import Info from './Hooks/useReducer/Info'
+//import Info from './Hooks/useReducer/Info'
+//import Average from './Hooks/useMemo/Average';
+import Average from './Hooks/useCallback/Average';
 
 // import ScrollBox from './Dom_name/ScrollBox'
 // import logo from './logo.svg';
 import './App.css';
 
-
 class App extends Component {
-        
     render() {
         return (
             <div className="App">
@@ -27,10 +27,8 @@ class App extends Component {
                     className="App-logo"
                     alt="logo"
                 />
-                
-				
-				<Info/>				
-				
+
+                <Average />
             </div>
 
             /*<Counter />
