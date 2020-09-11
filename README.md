@@ -157,6 +157,8 @@ componentDidCatch 메소드는 리액트 v16에서 새롭게 도입됐다.
 
 #### setState
 
+	import React, { useState } from 'react';
+
 	const [message, setMessage] = useState('');
 이 문장은 배열 비구조화 할당 문법이다.
 
@@ -185,7 +187,7 @@ useState의 인자에는 초기값을 넣어주면 된다. 값의 형태는 자�
 	const [object, setObject] = useState({a:1, b:1});
 	object.b = 2;
 	
-그러면 배열이나 객체를 업데이트해야 할 때는 어떻게 해야할까요? 그럴때는 배열이나 객체 사본을 만들고 그 사본에 값을 업데이트 한 후, 그 사본의 상태를 setState 혹은 세터 함수를 통해 업데이트 한다.
+그러면 배열이나 객체를 업데이트해야 할 때는 어떻게 해야할까? 그럴때는 배열이나 객체 사본을 만들고 그 사본에 값을 업데이트 한 후, 그 사본의 상태를 setState 혹은 세터 함수를 통해 업데이트 한다.
 
 	//객체 다루기
 	const object = {a : 1 , b : 2, c : 3};
@@ -258,6 +260,9 @@ useReducer은 useSate보다 더 다양한 컴포넌트 상황에 따라 다양�
 	
 17장에서 다룰 리덕스에서 사용하는 액션 객체에는 어떤 액션인지 알려주는 type 필드가 꼭 있어야 하지만, useReducer에서 사용하는 액션 객체는 반드시 type을 지니고 있을 필요가 없다. 심지어 객체가 아니라 문자열이나 숫자여도 상관 없다.
 
+
+	import React, { useReducer } from 'react'
+	
 	const [state, dispatch] = useReducer(reducer, {value : 0})
 	
 	function reducer(state, action){
@@ -273,6 +278,60 @@ useReducer의 첫번째 파라미터에는 **리듀서 함수를 넣고**, 두�
 이 Hook을 사용하면 state값과 dispatch 함수를 받아오는데 여기서 state는 현재 가르키고 있는 상태고, dispatch는 액션을 발생시키는 함수다. dispatch(action)과 같은 형태로, 함수 안에 파라미터로 액션 값을 넣어주면 리듀서 함수가 호출되는 구조다.
 
 useReducer를 사용했을 때의 가장 큰 장점은 컴포넌트 업데이트 로직을 컴포넌트 바깥으로 빼낼 수 있다는 것이다.
+
+#### useMemo
+
+useMemo를 사용하면 함수형 컴포넌트 내부에서 발생하는 연산을 최적화 할 수 있다.
+
+	import React, { useMemo } from 'react'
+	
+	const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+	
+Memo 는 "memoized" 를 의미하는데, 이는, 이전에 계산 한 값을 재사용한다는 의미를 가지고 있다.
+첫번째 인자는 결과값을 생성해주는 팩토리 함수이고, 두번째는 인자는 결과값 재활용할 때 기준이되는 입력값 배열이다.
+
+x와 y 값이 이 전에 랜더링했을 때와 동일할 경우, 이 랜더링 때 구했던 결과값을 재활용한다. 하지만, x와 y 값이 이 전에 랜더링했을 때와 달라졌을 경우, () => compute(x, y) 함수를 호출하여 결과값을 z에 할당해준다.
+
+#### useCallback
+
+useCallback은 useMemo와 상당히 비슷한 함수이다. 주로 렌더링 성능을 최적화해야 하는 상황에 사용한다. 이 Hook을 사용하면 이벤트 핸들러 함수를 필요할 때만 생성할 수 있다.
+
+
+	const onChange = (e) => {
+			setNumber(e.target.value);
+		};
+
+	const onInsert = (e) => {
+		let nextList;
+
+		nextList = list.concat(parseInt(number));
+		setList(nextList);
+		setNumber('');
+	};
+	
+이 함수를 useMemo를 이용해서 코드를 작성하면 컴포넌트가 리렌더링될 때마다 이 함수들이 새로 생성된다.
+대부분의 경우 이러한 방식은 문제가 없지만, 컴포넌트의 렌더링이 자주 발생하거나 렌더링해야 할 컴포넌트의 개수가 많아지면 문제가 생겨 이 부분을 최적화 해줘야한다
+
+
+	import React, { useState, useMemo, useCallback } from 'react';
+
+	const onChange = useCallback((e) => {
+			setNumber(e.target.value);
+		},[]); // 컴포넌트가 처음 렌더링 될 때만 함수 생성
+
+    const onInsert = useCallback((e) => {
+        const nextList = list.concat(parseInt(number));
+        setList(nextList);
+        setNumber('');
+    }, [number, list]); // number or list가 바뀌었을 때만 함수 생성
+	
+useCallback의 첫번째 파라미터에는 생성하고 싶은 함수를 넣고, 두번째 파라미터에는 배열을 넣으면 된다. 이 배열에는 어떤 값이 바뀌었을 때 함수를 새로 생성해야 하는지 명시해야 한다.
+
+ohChange처럼 비어있는 배열을 넣게 되면 컴포넌트가 렌더링 될 때 단 한번만 함수가 생성되며, onInsert처럼 배열 안에 number과 list를 넣게 되면 배열 안의 내용이 바뀌거나 (배열에)새로운 항목이 추가될 때마다 함수가 생성된다.
+
+함수 내부에서 상태 값에 의존해야 할 때는 그 값을 반드시 두 번째 파라미터 안에 포함시켜 주어야 한다. 예를 들어 onChange의 경우 기존의 값을 조회하지 않고 바로 설정만 하기 때문에 배열이 비어있어도 상관없지만, onInsert는 기존의 number과 list를 조회해서 nextList를 생성하기때문에 배열안에 number과 list를 꼭 넣어주어야 한다.
+
+useCallback은 결국 useMemo를 함수로 반환하는 상황에서 더 편하게 사용할 수 있는 Hook이다. 숫자, 문자열, 객체처럼 일반 값을 재사용 하려면 useMemo를 사용하고, 함수를 재사용하려면 useCallback를 사용하면 된다.
 
 ---
 
