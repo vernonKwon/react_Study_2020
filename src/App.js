@@ -12,7 +12,8 @@ import React, { Component } from 'react';
 // import Counter from './Hooks/useReducer/Counter'
 //import Info from './Hooks/useReducer/Info'
 //import Average from './Hooks/useMemo/Average';
-import Average from './Hooks/useCallback/Average';
+//import Average from './Hooks/useCallback/Average';
+import Average from './Hooks/useRef/Average';
 
 // import ScrollBox from './Dom_name/ScrollBox'
 // import logo from './logo.svg';

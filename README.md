@@ -336,6 +336,39 @@ ohChange처럼 비어있는 배열을 넣게 되면 컴포넌트가 렌더링 �
 
 useCallback은 결국 useMemo를 함수로 반환하는 상황에서 더 편하게 사용할 수 있는 Hook이다. 숫자, 문자열, 객체처럼 일반 값을 재사용 하려면 useMemo를 사용하고, 함수를 재사용하려면 useCallback를 사용하면 된다.
 
+
+#### useRef
+
+	import React, { useRef } from 'react';
+	const refContainer = useRef(initialValue);
+	
+useRef는 .current 프로퍼티로 전달된 인자(initialValue)로 초기화된 변경 가능한 ref 객체를 반환한다. 반환된 객체는 컴포넌트의 전 생애주기를 통해 유지될 것이다.
+
+	function TextInputWithFocusButton() {
+	  const inputEl = useRef(null);
+	  const onButtonClick = () => {
+		// `current` points to the mounted text input element
+		inputEl.current.focus();
+	  };
+	  return (
+		<>
+		  <input ref={inputEl} type="text" />
+		  <button onClick={onButtonClick}>Focus the input</button>
+		</>
+	  );
+	}
+
+본질적으로 useRef는 .current 프로퍼티에 변경 가능한 값을 담고 있는 “상자”와 같다.
+
+DOM에 접근하는 방법으로 refs에 친숙할것 같다. 만약 <div ref={myRef} />를 사용하여 React로 ref 객체를 전달한다면, React는 모드가 변경될 때마다 변경된 DOM 노드에 그것의 .current 프로퍼티를 설정할 것이다.
+
+그렇지만, ref 속성보다 useRef()가 더 유용하다. 이 기능은 클래스에서 인스턴스 필드를 사용하는 방법과 유사한 어떤 가변값을 유지하는 데에 편리하다.
+
+이것은 useRef()가 순수 자바스크립트 객체를 생성하기 때문이다. useRef()와 {current: ...} 객체 자체를 생성하는 것의 유일한 차이점이라면 useRef는 매번 렌더링을 할 때 동일한 ref 객체를 제공한다.
+
+.current 프로퍼티를 변형하는 것이 리렌더링을 발생시키지는 않습니다. 만약 React가 DOM 노드에 ref를 attach하거나 detach할 때 어떤 코드를 실행하고 싶다면 대신 콜백 ref를 사용하는 것이 좋다.
+
+
 ---
 
 
