@@ -6,11 +6,11 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-				<img
+				{/*<img
                     src="https://img.hankyung.com/photo/201908/BF.20397825.1.jpg"
                     className="App-logo"
                     alt="logo"
-                />
+                />*/}
                 <Info />
             </div>
         );
