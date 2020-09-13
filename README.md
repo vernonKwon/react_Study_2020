@@ -413,4 +413,3 @@ ko.reactjs.org에서는 이렇게 나와있다.
 리액트의 생명주기 구성은 이러하다
 
 ![생명주기](https://user-images.githubusercontent.com/29453831/92323890-3c337080-f077-11ea-87da-0b7f6a074aca.png)
-
