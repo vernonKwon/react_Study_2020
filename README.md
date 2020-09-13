@@ -360,7 +360,7 @@ useRef는 .current 프로퍼티로 전달된 인자(initialValue)로 초기화�
 
 본질적으로 useRef는 .current 프로퍼티에 변경 가능한 값을 담고 있는 “상자”와 같다.
 
-DOM에 접근하는 방법으로 refs에 친숙할것 같다. 만약 <div ref={myRef} />를 사용하여 React로 ref 객체를 전달한다면, React는 모드가 변경될 때마다 변경된 DOM 노드에 그것의 .current 프로퍼티를 설정할 것이다.
+DOM에 접근하는 방법으로 refs에 친숙할것 같다. 만약 ```<div ref={myRef} />```를 사용하여 React로 ref 객체를 전달한다면, React는 모드가 변경될 때마다 변경된 DOM 노드에 그것의 .current 프로퍼티를 설정할 것이다.
 
 그렇지만, ref 속성보다 useRef()가 더 유용하다. 이 기능은 클래스에서 인스턴스 필드를 사용하는 방법과 유사한 어떤 가변값을 유지하는 데에 편리하다.
 
