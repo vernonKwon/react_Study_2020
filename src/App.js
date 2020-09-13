@@ -15,6 +15,8 @@ const App = () => {
 
     const onInsert = useCallback(
         (text) => {
+			
+			console.log(nextId.current)
             const todo = {
                 id: nextId.current,
                 text,
