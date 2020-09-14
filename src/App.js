@@ -8,7 +8,7 @@ const App = () => {
     const [todos, setTodos] = useState([
         { id: 1, text: '전역하고싶다', checked: true },
         { id: 2, text: '마스터 치킨 사주세요.', checked: false },
-        { id: 3, text: '뿌링클 사랑해요', checked: true },
+        { id: 3, text: '뿌링클 사랑해요', checked: true }
     ]);
 
     const nextId = useRef(todos.length + 1);
