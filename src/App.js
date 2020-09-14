@@ -11,7 +11,7 @@ const App = () => {
         { id: 3, text: '뿌링클 사랑해요', checked: true }
     ]);
 
-    const nextId = useRef(todos.length + 1);
+    const nextId = useRef(todos.length + 1)
 
     const onInsert = useCallback(
         (text) => {
@@ -22,7 +22,7 @@ const App = () => {
                 text,
                 checked: false,
             };
-            setTodos(todos.concat(todo));
+            setTodos(todos.concat(todo))
             nextId.current += 1;
         },
         [todos]
