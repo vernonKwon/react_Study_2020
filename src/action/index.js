@@ -1,6 +1,6 @@
 import * as types from './ActionTypes';
 
-export function increnemt() {
+export function increment() {
     return {
         type: types.INCREMENT,
     };
