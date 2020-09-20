@@ -3,13 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter } from 'react-router-dom';
+import Favicon from 'react-favicon';
 
 ReactDOM.render(
     //  <React.StrictMode>
     //    <App />
     //  </React.StrictMode>,
     // document.getElementById('root')
-    <App />,
+    <BrowserRouter>
+		<Favicon url="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRSLLCByOxqbvSPV02B_v_5eVKNxvatMFQzJg&usqp=CAU" />
+        <App />
+    </BrowserRouter>,
     document.getElementById('root')
 );
 

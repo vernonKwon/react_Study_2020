@@ -4,8 +4,22 @@ class EventParctice extends Component {
     state = {
         message: '',
     };
-	
-	
+
+    handleGoBack = () => {
+        this.props.history.goBack();
+    };
+    handleGoHome = () => {
+        this.props.history.push('/');
+    };
+
+    componentDidMount() {
+        //this.unblock = this.props.history.block('정말?');
+    }
+    componentWillUnmount() {
+        if (this.unblock) {
+            this.unblock();
+        }
+    }
 
     handleChange(e) {
         this.setState(
@@ -13,8 +27,8 @@ class EventParctice extends Component {
                 message: e.target.value,
             },
             () => console.log(this.state.message)
-        );		
-	}
+        );
+    }
     /*
 		setState는 await 가 불가능하다. 그래서 순차실행을 하고 싶다면 위의 코드처럼 써야한다.
 		https://medium.com/@saturnuss/setstate-%EB%8A%94-await%EC%99%80-%EC%82%AC%EC%9A%A9%EC%9D%B4-%EA%B0%80%EB%8A%A5%ED%95%A0%EA%B9%8C-7b02581f6df4
@@ -38,9 +52,7 @@ class EventParctice extends Component {
 		2) onKeyPress는 ASCII값이기 때문에 shift, ctrl, backspace, tab, 한/영 등의 (토글)키를 인식하지 못한다.
 
 	*/
-	
-	
-  
+
     render() {
         return (
             <div>
@@ -57,8 +69,8 @@ class EventParctice extends Component {
                 />
 
                 <button onClick={this.handleClick}>확인</button>
-				
-				
+                <button onClick={this.handleGoBack}>뒤로</button>
+                <button onClick={this.handleGoHome}>홈으로</button>
             </div>
         );
     }
